@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kaouthar TOUIL — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg0:    #fdf5f3;
+    --bg1:    #faf0ee;
+    --bg2:    #f5e8e4;
+    --bg3:    #eeddd8;
+    --bord:   rgba(160,60,70,.12);
+    --bord2:  rgba(160,60,70,.22);
+    --txt:    #2a1215;
+    --txt2:   #6b3840;
+    --txt3:   #a07278;
+    --rose:   #d4547a;
+    --rose2:  #e87fa0;
+    --bord_r: #c8415f;
+    --bx:     #7c1f33;
+    --bx2:    #9e3349;
+    --gold:   #c4893a;
+    --sage:   #7a9e7e;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { font-family:'DM Sans',sans-serif; background:var(--bg0); color:var(--txt); }
+
+  /* NAV */
+  nav {
+    position:fixed; top:0; width:100%; z-index:100;
+    background:rgba(253,245,243,.92); backdrop-filter:blur(16px);
+    border-bottom:1px solid var(--bord2);
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 5%;
+  }
+  .nav-logo {
+    font-family:'Syne',sans-serif; font-weight:800; font-size:1rem;
+    color:var(--bx); letter-spacing:.06em;
+  }
+  .nav-links { display:flex; gap:28px; list-style:none; }
+  .nav-links a { text-decoration:none; font-size:.85rem; color:var(--txt2); transition:color .2s; }
+  .nav-links a:hover { color:var(--rose); }
+
+  /* HERO */
+  .hero {
+    min-height:100vh; display:flex; align-items:center;
+    padding:110px 5% 70px;
+    background:linear-gradient(140deg, #fdf5f3 0%, #fce8ec 55%, #f5e0e8 100%);
+    position:relative; overflow:hidden;
+  }
+  .hero::before {
+    content:''; position:absolute; top:-120px; right:-120px;
+    width:480px; height:480px; border-radius:50%;
+    background:radial-gradient(circle, rgba(212,84,122,.12) 0%, transparent 70%);
+  }
+  .hero::after {
+    content:''; position:absolute; bottom:-80px; left:-80px;
+    width:340px; height:340px; border-radius:50%;
+    background:radial-gradient(circle, rgba(124,31,51,.08) 0%, transparent 70%);
+  }
+  .hero-badge {
+    display:inline-flex; align-items:center; gap:8px;
+    background:#fff; border:1px solid var(--bord2); border-radius:20px;
+    padding:5px 16px; font-size:.78rem; color:var(--txt2);
+    margin-bottom:22px; letter-spacing:.06em; text-transform:uppercase;
+  }
+  .hero-badge span { width:6px; height:6px; border-radius:50%; background:var(--sage); display:block; }
+  h1 {
+    font-family:'Syne',sans-serif; font-weight:800;
+    font-size:clamp(2.6rem,6.5vw,4.8rem); line-height:1.05; margin-bottom:20px;
+  }
+  h1 .name { color:var(--txt); }
+  h1 .rose { color:var(--bx); }
+  .hero-sub { font-size:1rem; color:var(--txt2); max-width:540px; line-height:1.75; margin-bottom:32px; }
+  .hero-pills { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:36px; }
+  .pill { padding:6px 16px; border-radius:20px; font-size:.8rem; font-weight:500; border:1.5px solid; }
+  .pill-r { border-color:var(--rose); color:var(--bx); background:rgba(212,84,122,.08); }
+  .pill-b { border-color:var(--bx); color:var(--bx); background:rgba(124,31,51,.07); }
+  .pill-g { border-color:var(--gold); color:#7a4f10; background:rgba(196,137,58,.08); }
+  .hero-cta { display:flex; gap:14px; flex-wrap:wrap; }
+  .btn { padding:12px 26px; border-radius:8px; font-weight:600; font-size:.88rem; text-decoration:none; transition:.2s; }
+  .btn-primary { background:var(--bx); color:#fff; }
+  .btn-primary:hover { background:#5e1627; }
+  .btn-outline { background:transparent; border:1.5px solid var(--bord2); color:var(--txt2); }
+  .btn-outline:hover { border-color:var(--rose); color:var(--rose); }
+
+  /* SECTIONS */
+  section { padding:80px 5%; }
+  .sec-label { font-size:.72rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--txt3); margin-bottom:8px; }
+  .sec-title { font-family:'Syne',sans-serif; font-weight:800; font-size:clamp(1.8rem,4vw,2.8rem); color:var(--txt); margin-bottom:12px; }
+  .rose-txt { color:var(--bx); }
+  .divider { width:48px; height:3px; background:linear-gradient(90deg,var(--rose),var(--bx)); border-radius:2px; margin-bottom:40px; }
+
+  /* À PROPOS */
+  #apropos { background:#fff; }
+  .apropos-grid { display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:start; }
+  .apropos-text p { color:var(--txt2); line-height:1.8; margin-bottom:16px; font-size:.95rem; }
+  .fact-cards { display:flex; flex-direction:column; gap:12px; }
+  .fact {
+    background:var(--bg1); border:1px solid var(--bord); border-radius:12px; padding:16px 20px;
+    border-left:3px solid;
+  }
+  .fact:nth-child(1){ border-left-color:var(--rose); }
+  .fact:nth-child(2){ border-left-color:var(--bx); }
+  .fact:nth-child(3){ border-left-color:var(--gold); }
+  .fact:nth-child(4){ border-left-color:var(--sage); }
+  .fact h4 { font-size:.88rem; font-weight:600; color:var(--txt); margin-bottom:3px; }
+  .fact p { font-size:.82rem; color:var(--txt2); margin:0; }
+
+  /* COMPÉTENCES */
+  #competences { background:var(--bg0); }
+  .comp-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:16px; }
+  .comp-card {
+    background:#fff; border:1px solid var(--bord); border-radius:14px; padding:22px 20px;
+    border-top:3px solid; transition:transform .2s, box-shadow .2s;
+  }
+  .comp-card:hover { transform:translateY(-3px); box-shadow:0 8px 28px rgba(124,31,51,.09); }
+  .comp-card:nth-child(1){ border-top-color:var(--rose); }
+  .comp-card:nth-child(2){ border-top-color:var(--bx); }
+  .comp-card:nth-child(3){ border-top-color:var(--gold); }
+  .comp-card:nth-child(4){ border-top-color:var(--sage); }
+  .comp-card:nth-child(5){ border-top-color:var(--rose2); }
+  .comp-icon { font-size:1.5rem; margin-bottom:10px; }
+  .comp-card h4 { font-size:.9rem; font-weight:600; color:var(--txt); margin-bottom:12px; }
+  .tag-list { display:flex; flex-wrap:wrap; gap:6px; }
+  .tag { font-size:.72rem; padding:3px 10px; border-radius:6px; background:var(--bg2); color:var(--txt2); border:1px solid var(--bord); }
+
+  /* FORMATION */
+  #formation { background:#fff; }
+  .tl { position:relative; padding-left:32px; }
+  .tl::before {
+    content:''; position:absolute; left:8px; top:0; bottom:0;
+    width:2px; background:linear-gradient(to bottom,var(--rose),var(--bx)); border-radius:2px;
+  }
+  .tl-item { position:relative; margin-bottom:36px; }
+  .tl-dot {
+    position:absolute; left:-27px; top:5px;
+    width:12px; height:12px; border-radius:50%;
+    background:#fff; border:2px solid var(--rose);
+  }
+  .tl-item:nth-child(2) .tl-dot { border-color:var(--bx); }
+  .tl-date { font-size:.74rem; color:var(--txt3); font-weight:600; text-transform:uppercase; letter-spacing:.07em; }
+  .tl-title { font-family:'Syne',sans-serif; font-size:1rem; font-weight:700; color:var(--txt); margin:5px 0 4px; }
+  .tl-sub { font-size:.85rem; color:var(--rose); margin-bottom:6px; font-weight:500; }
+  .tl-desc { font-size:.86rem; color:var(--txt2); line-height:1.7; }
+
+  /* EXPÉRIENCES */
+  #experience { background:var(--bg0); }
+  .exp-card {
+    background:#fff; border:1px solid var(--bord); border-radius:14px; padding:26px 28px;
+    margin-bottom:18px; position:relative; overflow:hidden;
+  }
+  .exp-card::before {
+    content:''; position:absolute; left:0; top:0; bottom:0;
+    width:3px; background:linear-gradient(to bottom,var(--rose),var(--bx));
+  }
+  .exp-head { display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:10px; margin-bottom:4px; }
+  .exp-co { font-family:'Syne',sans-serif; font-size:1.1rem; font-weight:800; color:var(--bx); }
+  .exp-badge { font-size:.72rem; font-weight:700; padding:4px 12px; border-radius:6px; letter-spacing:.04em; text-transform:uppercase; }
+  .b-rose { background:rgba(212,84,122,.1); color:var(--bx); border:1px solid rgba(212,84,122,.25); }
+  .b-sage { background:rgba(122,158,126,.12); color:#3d6640; border:1px solid rgba(122,158,126,.3); }
+  .b-gold { background:rgba(196,137,58,.1); color:#7a4f10; border:1px solid rgba(196,137,58,.25); }
+  .b-lav  { background:rgba(130,90,160,.1); color:#5c2e7e; border:1px solid rgba(130,90,160,.25); }
+  .exp-role { font-size:.88rem; color:var(--txt2); font-weight:500; margin-bottom:3px; }
+  .exp-period { font-size:.79rem; color:var(--txt3); margin-bottom:16px; }
+  .exp-list { padding-left:16px; }
+  .exp-list li { font-size:.87rem; color:var(--txt2); line-height:1.75; margin-bottom:4px; }
+  .exp-list li strong { color:var(--txt2); font-weight:400; }
+
+  /* PROJETS */
+  #projets { background:#fff; }
+  .proj-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px; }
+  .proj-card {
+    background:var(--bg1); border:1px solid var(--bord); border-radius:14px; overflow:hidden;
+    transition:transform .2s, box-shadow .2s;
+  }
+  .proj-card:hover { transform:translateY(-4px); box-shadow:0 10px 32px rgba(124,31,51,.1); }
+  .proj-top { padding:22px 20px 16px; border-bottom:1px solid var(--bord); display:flex; align-items:center; gap:12px; }
+  .proj-ico { width:42px; height:42px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.3rem; flex-shrink:0; }
+  .pi1 { background:rgba(212,84,122,.12); }
+  .pi2 { background:rgba(124,31,51,.1); }
+  .pi3 { background:rgba(122,158,126,.12); }
+  .proj-top h3 { font-family:'Syne',sans-serif; font-size:.93rem; font-weight:700; color:var(--txt); }
+  .proj-body { padding:16px 20px 20px; }
+  .proj-body p { font-size:.85rem; color:var(--txt2); line-height:1.7; margin-bottom:12px; }
+  .ptags { display:flex; flex-wrap:wrap; gap:6px; }
+  .ptag { font-size:.71rem; padding:3px 10px; border-radius:6px; font-weight:500; }
+  .pt-r { background:rgba(212,84,122,.1); color:var(--bx); }
+  .pt-b { background:rgba(124,31,51,.09); color:var(--bx2); }
+  .pt-g { background:rgba(196,137,58,.1); color:#7a4f10; }
+  .pt-s { background:rgba(122,158,126,.12); color:#3d6640; }
+
+  /* SKILLS */
+  #skills { background:var(--bg0); }
+  .skills-grid { display:grid; grid-template-columns:1fr 1fr; gap:48px; }
+  .skill-group h3 { font-family:'Syne',sans-serif; font-size:1rem; font-weight:700; color:var(--txt); margin-bottom:22px; }
+  .lang-item { display:flex; align-items:center; gap:14px; margin-bottom:16px; }
+  .lang-name { width:76px; font-size:.87rem; color:var(--txt2); font-weight:500; }
+  .lang-bg { flex:1; height:5px; background:var(--bg3); border-radius:5px; overflow:hidden; }
+  .lang-bar { height:100%; border-radius:5px; }
+  .lang-lvl { font-size:.74rem; color:var(--txt3); width:24px; text-align:right; font-weight:600; }
+  .soft-list { display:flex; flex-wrap:wrap; gap:8px; }
+  .soft {
+    background:#fff; border:1px solid var(--bord); border-radius:8px;
+    padding:8px 14px; font-size:.83rem; color:var(--txt2);
+    display:flex; align-items:center; gap:7px;
+  }
+  .soft .dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; }
+
+  /* MODALE COMPÉTENCES */
+  .modal-overlay {
+    display:none; position:fixed; inset:0; z-index:200;
+    background:rgba(42,18,21,.45); backdrop-filter:blur(4px);
+    align-items:center; justify-content:center;
+  }
+  .modal-overlay.open { display:flex; }
+  .modal {
+    background:#fff; border-radius:18px; padding:32px 28px;
+    max-width:420px; width:90%; position:relative;
+    border-top:4px solid var(--rose);
+    box-shadow:0 20px 60px rgba(124,31,51,.18);
+  }
+  .modal-close {
+    position:absolute; top:14px; right:16px;
+    background:none; border:none; font-size:1.4rem; cursor:pointer;
+    color:var(--txt3); line-height:1;
+  }
+  .modal-close:hover { color:var(--bx); }
+  .modal h3 { font-family:'Syne',sans-serif; font-size:1.1rem; font-weight:800; color:var(--bx); margin-bottom:6px; }
+  .modal-sub { font-size:.8rem; color:var(--txt3); margin-bottom:18px; }
+  .modal-list { list-style:none; padding:0; display:flex; flex-direction:column; gap:8px; }
+  .modal-list li {
+    background:var(--bg1); border:1px solid var(--bord); border-radius:8px;
+    padding:10px 14px; font-size:.86rem; color:var(--txt2);
+    display:flex; align-items:flex-start; gap:10px; line-height:1.5;
+  }
+  .modal-list li::before { content:''; display:block; width:6px; height:6px; border-radius:50%; background:var(--rose); flex-shrink:0; margin-top:5px; }
+  .comp-card { cursor:pointer; }
+  .comp-card .voir { font-size:.72rem; color:var(--rose); margin-top:10px; display:inline-block; font-weight:600; }
+
+  /* CENTRES D'INTÉRÊT */
+  #interets { background:#fff; }
+  .int-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:16px; }
+  .int-card {
+    background:var(--bg1); border:1px solid var(--bord); border-radius:14px;
+    padding:24px 16px; text-align:center;
+    transition:transform .2s, box-shadow .2s;
+  }
+  .int-card:hover { transform:translateY(-3px); box-shadow:0 8px 24px rgba(124,31,51,.09); }
+  .int-icon { font-size:2rem; margin-bottom:10px; }
+  .int-card h4 { font-size:.88rem; font-weight:600; color:var(--txt); margin-bottom:4px; }
+  .int-card p { font-size:.78rem; color:var(--txt3); line-height:1.5; }
+
+  /* CONTACT */
+  #contact { background:var(--bx); text-align:center; }
+  #contact .sec-label { color:rgba(255,255,255,.5); }
+  #contact .sec-title { color:#fff; margin-bottom:12px; }
+  #contact .sec-title .rose-txt { color:#f9b4c4; }
+  #contact > p { color:rgba(255,255,255,.72); max-width:460px; margin:0 auto 36px; line-height:1.7; font-size:.94rem; }
+  .contact-cards { display:flex; justify-content:center; flex-wrap:wrap; gap:14px; }
+  .contact-card {
+    background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.18);
+    border-radius:12px; padding:16px 22px; display:flex; align-items:center; gap:14px;
+    text-decoration:none; color:#fff; transition:.2s;
+  }
+  .contact-card:hover { background:rgba(255,255,255,.18); }
+  .cc-icon { width:40px; height:40px; border-radius:10px; background:rgba(255,255,255,.12); display:flex; align-items:center; justify-content:center; font-size:1.1rem; }
+  .cc-info span { font-size:.71rem; color:rgba(255,255,255,.55); display:block; }
+  .cc-info strong { font-size:.88rem; }
+
+  footer { text-align:center; padding:22px; font-size:.78rem; color:var(--txt3); background:var(--bg1); border-top:1px solid var(--bord); }
+
+  @media(max-width:700px){
+    .apropos-grid,.skills-grid { grid-template-columns:1fr; }
+    nav .nav-links { display:none; }
+    .hero { padding-top:90px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">K·TOUIL</div>
+  <ul class="nav-links">
+    <li><a href="#apropos">À propos</a></li>
+    <li><a href="#competences">Compétences</a></li>
+    <li><a href="#formation">Formation</a></li>
+    <li><a href="#experience">Expériences</a></li>
+    <li><a href="#projets">Projets</a></li>
+    <li><a href="#interets">Intérêts</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div>
+    <div class="hero-badge"><span></span>Portfolio 2025–2026</div>
+    <h1><span class="name">Kaouthar<br></span><span class="rose">TOUIL</span></h1>
+    <p class="hero-sub">Étudiante BUT Management de la Logistique et des Transports à l'IUT Moselle-Est, Sarreguemines — passionnée par l'organisation des flux, le transport et la supply chain.</p>
+    <div class="hero-pills">
+      <div class="pill pill-r">🚛 Transport</div>
+      <div class="pill pill-b">📦 Logistique</div>
+      <div class="pill pill-g">✈️ Supply Chain</div>
+    </div>
+    <div class="hero-cta">
+      <a href="#experience" class="btn btn-primary">Voir mon parcours</a>
+      <a href="#contact" class="btn btn-outline">Me contacter</a>
+      <a href="CV_Kaouthar_TOUIL.pdf" download class="btn btn-outline" style="display:inline-flex;align-items:center;gap:8px;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Télécharger mon CV
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="apropos">
+  <div class="sec-label">Qui suis-je ?</div>
+  <div class="sec-title">À <span class="rose-txt">propos</span></div>
+  <div class="divider"></div>
+  <div class="apropos-grid">
+    <div class="apropos-text">
+      <p>Je suis Kaouthar TOUIL, étudiante en 1ère année de BUT MLT (Management de la Logistique et des Transports) à l'IUT Moselle-Est de Sarreguemines. Originaire d'Épinay-sur-Seine, j'ai choisi cette formation pour ma passion pour l'organisation, les flux et la mobilité.</p>
+      <p>Mon stage chez <strong style="color:var(--bx)">Servair</strong> à l'aéroport Roissy-CDG m'a plongée au cœur d'un service transport en environnement aéroportuaire : dimensionnement d'équipe, planification, gestion des flux tendus.</p>
+      <p>Curieuse, réactive et adaptable, j'apprends efficacement par la pratique. Je me projette clairement dans les métiers du transport et de la supply chain.</p>
+    </div>
+    <div class="fact-cards">
+      <div class="fact"><h4>📍 Localisation</h4><p>17 rue du Douaumont, Sarreguemines (57200)</p></div>
+      <div class="fact"><h4>🎓 Formation actuelle</h4><p>BUT MLT — IUT Moselle-Est, Université de Lorraine</p></div>
+      <div class="fact"><h4>🌍 Langues</h4><p>Anglais C1 · Arabe B1 · Espagnol A2</p></div>
+      <div class="fact"><h4>💼 Stage effectué</h4><p>Servair (Gategroup) — Service Transport, Paris CDG · Jan–Fév 2026</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- MODALE -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal" id="modalBox">
+    <button class="modal-close" onclick="closeModalBtn()">✕</button>
+    <h3 id="modalTitle"></h3>
+    <div class="modal-sub" id="modalSub"></div>
+    <ul class="modal-list" id="modalList"></ul>
+  </div>
+</div>
+
+<section id="competences">
+  <div class="sec-label">Ce que je sais faire</div>
+  <div class="sec-title">Compé<span class="rose-txt">tences</span></div>
+  <div class="divider"></div>
+  <div class="comp-grid">
+    <div class="comp-card" onclick="openModal('transport')">
+      <div class="comp-icon">🚚</div>
+      <h4>Transport & Exploitation</h4>
+      <div class="tag-list">
+        <span class="tag">TRM</span><span class="tag">Transport voyageurs</span>
+        <span class="tag">Réglementation</span><span class="tag">Tournées & groupage</span><span class="tag">Planification</span>
+      </div>
+      <span class="voir">Voir les modules →</span>
+    </div>
+    <div class="comp-card" onclick="openModal('logistique')">
+      <div class="comp-icon">📦</div>
+      <h4>Logistique & Supply Chain</h4>
+      <div class="tag-list">
+        <span class="tag">Flux physiques</span><span class="tag">Stocks</span>
+        <span class="tag">Achats</span><span class="tag">Reverse logistics</span><span class="tag">Last mile</span>
+      </div>
+      <span class="voir">Voir les modules →</span>
+    </div>
+    <div class="comp-card" onclick="openModal('analyse')">
+      <div class="comp-icon">📊</div>
+      <h4>Dimensionnement & Analyse</h4>
+      <div class="tag-list">
+        <span class="tag">Étude de flux</span><span class="tag">Temps de cycle</span>
+        <span class="tag">RH</span><span class="tag">Vacations</span><span class="tag">Appel d'offre</span>
+      </div>
+      <span class="voir">Voir les modules →</span>
+    </div>
+    <div class="comp-card" onclick="openModal('info')">
+      <div class="comp-icon">💻</div>
+      <h4>Outils numériques</h4>
+      <div class="tag-list">
+        <span class="tag">Word / Excel</span><span class="tag">PowerPoint</span>
+        <span class="tag">Canva</span><span class="tag">Pix</span>
+      </div>
+      <span class="voir">Voir les modules →</span>
+    </div>
+    <div class="comp-card" onclick="openModal('management')">
+      <div class="comp-icon">🤝</div>
+      <h4>Management & Projet</h4>
+      <div class="tag-list">
+        <span class="tag">Gestion de projet</span><span class="tag">Équipe</span>
+        <span class="tag">Plan d'action</span><span class="tag">SWOT/PESTEL</span>
+      </div>
+      <span class="voir">Voir les modules →</span>
+    </div>
+  </div>
+</section>
+
+<section id="formation">
+  <div class="sec-label">Parcours académique</div>
+  <div class="sec-title">For<span class="rose-txt">mation</span></div>
+  <div class="divider"></div>
+  <div class="tl">
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-date">2025 — 2026 (en cours)</div>
+      <div class="tl-title">BUT Management de la Logistique et des Transports</div>
+      <div class="tl-sub">IUT Moselle-Est, Université de Lorraine — Sarreguemines</div>
+      <div class="tl-desc">Formation en 3 ans articulée autour des compétences Transporter, Organiser et Manager. SAÉ pédagogiques (Exploitemps, Reactik), stage chez Servair (CDG), mémo de bilan et oral PPP.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-date">2024</div>
+      <div class="tl-title">Terminale STMG — Spécialité Gestion et Finance</div>
+      <div class="tl-sub">Lycée Jacques Feyder — Épinay-sur-Seine (93)</div>
+      <div class="tl-desc">Baccalauréat sciences et technologies du management et de la gestion, spécialité gestion et finance.</div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="sec-label">Sur le terrain</div>
+  <div class="sec-title">Expé<span class="rose-txt">riences</span></div>
+  <div class="divider"></div>
+
+  <div class="exp-card">
+    <div class="exp-head">
+      <div class="exp-co">✈️ Servair — Gategroup</div>
+      <div class="exp-badge b-rose">Stage</div>
+    </div>
+    <div class="exp-role">Stagiaire — Service Transport</div>
+    <div class="exp-period">Janvier – Février 2026 · Paris Charles-de-Gaulle (95)</div>
+    <ul class="exp-list">
+      <li><strong>Mission principale :</strong> dimensionnement d'une équipe de chauffeurs dans le cadre d'un appel d'offre pour l'approvisionnement de salons aéroportuaires.</li>
+      <li><strong>Modélisation des flux</strong> avec Canva ; restitution au tuteur et aux équipes du service transport.</li>
+      <li><strong>Préparation d'une réunion de cadrage</strong> pour le service transport : support PowerPoint et présentation des objectifs opérationnels.</li>
+      <li><strong>Observation de la supply chain intégrée</strong> et prise en main des outils métier XOPS et FlightViz.</li>
+      <li>Participation à l'<strong>audit ISO 9001</strong> piste et à la campagne Santé-Sécurité « 12 règles d'or ».</li>
+    </ul>
+  </div>
+
+  <div class="exp-card">
+    <div class="exp-head">
+      <div class="exp-co">👶 Garde d'enfant</div>
+      <div class="exp-badge b-sage">Emploi</div>
+    </div>
+    <div class="exp-role">Accompagnatrice / Animatrice</div>
+    <div class="exp-period">Depuis mars 2021</div>
+    <ul class="exp-list">
+      <li>Accompagnement et encadrement trajet école-foyer.</li>
+      <li>Organisation d'ateliers ludiques et éducatifs.</li>
+      <li>Application des consignes de sécurité et d'hygiène petite enfance.</li>
+    </ul>
+  </div>
+
+  <div class="exp-card">
+    <div class="exp-head">
+      <div class="exp-co">🥐 Force de vente — SARL Kaouthar</div>
+      <div class="exp-badge b-gold">Emploi</div>
+    </div>
+    <div class="exp-role">Vente & Gestion stocks — Boulangerie-Pâtisserie, Drancy (93)</div>
+    <div class="exp-period">2018 – 2020</div>
+    <ul class="exp-list">
+      <li>Accompagnement à la formulation du besoin client.</li>
+      <li>Agencement et préparation de l'espace d'accueil (normes hygiène/sécurité).</li>
+      <li>Organisation et suivi de l'inventaire et des stocks.</li>
+    </ul>
+  </div>
+
+  <div class="exp-card">
+    <div class="exp-head">
+      <div class="exp-co">💜 Bénévolat — ADELLES</div>
+      <div class="exp-badge b-lav">Bénévolat</div>
+    </div>
+    <div class="exp-role">Bénévole — Épinay-sur-Seine (93)</div>
+    <div class="exp-period">Novembre – Décembre 2022</div>
+    <ul class="exp-list">
+      <li>Accueil et récolte de dons.</li>
+      <li>Suivi d'un plan d'action pour la distribution.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="projets">
+  <div class="sec-label">SAÉ & Travaux académiques</div>
+  <div class="sec-title">Pro<span class="rose-txt">jets</span></div>
+  <div class="divider"></div>
+  <div class="proj-grid">
+    <div class="proj-card">
+      <div class="proj-top">
+        <div class="proj-ico pi1">🚌</div>
+        <h3>Étude Keolis + Jeu Reactik</h3>
+      </div>
+      <div class="proj-body">
+        <p>Rapport complet sur Keolis (SWOT & PESTEL). Simulation Reactik : implantation d'entreprises dans différents pays pour maximiser le chiffre d'affaires.</p>
+        <div class="ptags"><span class="ptag pt-r">Analyse stratégique</span><span class="ptag pt-b">Management</span></div>
+      </div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-top">
+        <div class="proj-ico pi2">🗓️</div>
+        <h3>Simulation Exploitemps — TRM</h3>
+      </div>
+      <div class="proj-body">
+        <p>Gestion d'une PME TRM sur une semaine : tournées, groupage, respect des temps de conduite et repos.</p>
+        <div class="ptags"><span class="ptag pt-b">Exploitation TRM</span><span class="ptag pt-r">Réglementation</span></div>
+      </div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-top">
+        <div class="proj-ico pi3">⛽</div>
+        <h3>Le Biocarburant — Ineptie économique ?</h3>
+      </div>
+      <div class="proj-body">
+        <p>Analyse des 3 générations de biocarburants, leurs bienfaits, méfaits et enjeux économiques. Synthèse nuancée sur leur rôle de transition.</p>
+        <div class="ptags"><span class="ptag pt-s">Transition énergétique</span><span class="ptag pt-g">Transport durable</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="interets">
+  <div class="sec-label">Ce qui me passionne</div>
+  <div class="sec-title">Centres d'<span class="rose-txt">intérêt</span></div>
+  <div class="divider"></div>
+  <div class="int-grid">
+    <div class="int-card">
+      <div class="int-icon">✈️</div>
+      <h4>Voyages</h4>
+      <p>Algérie · Pays Basque · Espagne · Belgique</p>
+    </div>
+    <div class="int-card">
+      <div class="int-icon">🎬</div>
+      <h4>Cinéma</h4>
+      <p>Passionnée par le 7ème art</p>
+    </div>
+    <div class="int-card">
+      <div class="int-icon">🍳</div>
+      <h4>Cuisine</h4>
+      <p>Exploration culinaire & créativité</p>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="sec-label">Savoir-être & Langues</div>
+  <div class="sec-title">Soft <span class="rose-txt">skills</span></div>
+  <div class="divider"></div>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <h3>🌍 Langues</h3>
+      <div class="lang-item">
+        <span class="lang-name">Anglais</span>
+        <div class="lang-bg"><div class="lang-bar" style="width:85%;background:linear-gradient(90deg,var(--rose),var(--bx));"></div></div>
+        <span class="lang-lvl">C1</span>
+      </div>
+      <div class="lang-item">
+        <span class="lang-name">Arabe</span>
+        <div class="lang-bg"><div class="lang-bar" style="width:60%;background:linear-gradient(90deg,var(--gold),#c47a1a);"></div></div>
+        <span class="lang-lvl">B1</span>
+      </div>
+      <div class="lang-item">
+        <span class="lang-name">Espagnol</span>
+        <div class="lang-bg"><div class="lang-bar" style="width:30%;background:linear-gradient(90deg,var(--sage),#3d6640);"></div></div>
+        <span class="lang-lvl">A2</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3>✨ Savoir-être</h3>
+      <div class="soft-list">
+        <div class="soft"><div class="dot" style="background:var(--rose)"></div>Forte capacité d'adaptation</div>
+        <div class="soft"><div class="dot" style="background:var(--bx)"></div>Réactivité</div>
+        <div class="soft"><div class="dot" style="background:var(--sage)"></div>Responsabilité</div>
+        <div class="soft"><div class="dot" style="background:var(--gold)"></div>Curiosité</div>
+        <div class="soft"><div class="dot" style="background:var(--rose)"></div>Travail en équipe</div>
+        <div class="soft"><div class="dot" style="background:var(--bx)"></div>Proactivité</div>
+        <div class="soft"><div class="dot" style="background:var(--sage)"></div>Apprentissage par la pratique</div>
+        <div class="soft"><div class="dot" style="background:var(--gold)"></div>Gestion des priorités</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="sec-label">Restons en contact</div>
+  <div class="sec-title">Me <span class="rose-txt">contacter</span></div>
+  <p>Disponible pour toute opportunité de stage, alternance ou échange dans les domaines du transport, de la logistique et de la supply chain.</p>
+  <div class="contact-cards">
+    <a href="tel:0652059196" class="contact-card">
+      <div class="cc-icon">📱</div>
+      <div class="cc-info"><span>Téléphone</span><strong>06 52 05 91 96</strong></div>
+    </a>
+    <a href="mailto:touilkaouthar7@gmail.com" class="contact-card">
+      <div class="cc-icon">✉️</div>
+      <div class="cc-info"><span>Email</span><strong>touilkaouthar7@gmail.com</strong></div>
+    </a>
+    <div class="contact-card">
+      <div class="cc-icon">📍</div>
+      <div class="cc-info"><span>Adresse</span><strong>Sarreguemines, 57200</strong></div>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 Kaouthar TOUIL — Portfolio BUT MLT · IUT Moselle-Est</footer>
+
+<script>
+const data = {
+  transport: {
+    title: '🚚 Transport & Exploitation',
+    sub: 'Compétence Transporter — S1 & S2 (PPN BUT MLT)',
+    items: [
+      'R1.01 Géographie des échanges — réseaux, flux, infrastructures nationales et mondiales',
+      'R1.02 Transport routier de marchandises : contexte et techniques — véhicules, plan de chargement, sécurité',
+      'R2.01 Économie des transports — politiques publiques, développement durable, mobilité',
+      'R2.02 Calcul de coûts de transport — charges fixes/variables, seuil de rentabilité, méthode trinôme',
+      'R2.03 TRM : exploitation — tournées, documents de transport, fret retour (SAÉ 2.01)',
+      'R2.04 Mobilités et transports de personnes — AOM, multimodalité, appel d\'offre (SAÉ 2.02)',
+      'R2.05 Transport maritime et opérations portuaires — lignes régulières, cotation, sécurité',
+      'SAÉ 1.01 Étude des acteurs TRM en vue d\'un appel d\'offre',
+      'SAÉ 2.01 Étude de solutions de transport TRM et/ou Maritime',
+      'SAÉ 2.02 Étude des acteurs du transport de voyageurs',
+      'Stage S2 — Servair CDG : dimensionnement équipe chauffeurs, appel d\'offre',
+    ]
+  },
+  logistique: {
+    title: '📦 Logistique & Supply Chain',
+    sub: 'Compétence Organiser — S1 & S2 (PPN BUT MLT)',
+    items: [
+      'R1.05 Logistique globale — chaîne logistique, flux poussés/tirés, logistique durable',
+      'R1.06 Entrepôts et plateformes logistiques — dimensionnement, WMS, palettisation, ABC',
+      'R2.06 Logistique et commerce international — incoterms, plateformes, intermodalité',
+      'R2.07 Introduction à la gestion des stocks et des approvisionnements — FIFO, CUMP, stock de sécurité',
+      'R2.08 Achats — processus achat, cahier des charges, sélection fournisseurs',
+      'SAÉ 1.02 Étude de l\'entreposage et de la logistique',
+      'SAÉ 2.03 Pilotage d\'un processus d\'achats et gestion des stocks',
+    ]
+  },
+  analyse: {
+    title: '📊 Dimensionnement & Analyse',
+    sub: 'Compétences transversales — méthodes quantitatives (PPN BUT MLT)',
+    items: [
+      'R1.14 Calculs mathématiques pour la logistique et le transport — unités, équations, proportionnalités',
+      'R2.16 Statistiques et prévisions — tendance, dispersion, séries chronologiques, prévisions (SAÉ 2.01 à 2.04)',
+      'R2.12 Utilisation d\'un tableur — RECHERCHEV, TCD, graphiques, valeurs cibles',
+      'R1.07 Comptabilité générale — bilan, compte de résultat, flux réels et monétaires',
+      'Dimensionnement d\'équipe chauffeurs — analyse temps de cycle par flux (stage Servair CDG)',
+      'Modélisation des flux supply chain aéroportuaire avec Canva (stage Servair CDG)',
+    ]
+  },
+  info: {
+    title: '💻 Outils numériques',
+    sub: 'R1.10 Initiation aux outils bureautiques & R2.12 Tableur (PPN BUT MLT)',
+    items: [
+      'R1.10 Initiation aux outils de la bureautique — Word, Excel, PowerPoint, ENT, outils collaboratifs',
+      'R2.12 Utilisation d\'un tableur — fonctions avancées, TCD, graphiques, sous-totaux',
+      'Canva — infographies, schémas de flux, visuels de présentation',
+      'Pix — certification nationale des compétences numériques',
+      'FlightViz & XOPS — outils métier observés lors du stage Servair CDG',
+      'Internet & réseaux sociaux professionnels',
+    ]
+  },
+  management: {
+    title: '🤝 Management & Projet',
+    sub: 'Compétence Manager — S1 & S2 (PPN BUT MLT)',
+    items: [
+      'R1.08 Approche projet — fondamentaux, Gantt, acteurs, suivi de projet, outils qualité (Ishikawa, Pareto)',
+      'R1.09 Organisation et RSE — chaîne de valeur, PESTEL, SWOT, développement durable',
+      'R2.09 Droit commercial — contrat de vente, formes juridiques, clause de réserve de propriété',
+      'R2.10 Marketing et négociation commerciale — SONCAS, étude de marché, appel d\'offre',
+      'R2.11 Conduite de projet — Gantt, gestion des risques, indicateurs, bilan de projet',
+      'R1.15 / R2.17 PPP — identité professionnelle, démarche réflexive, recherche de stage',
+      'R1.11 / R2.13 Expression et communication — oral, écrit, travail en équipe, synthèses',
+      'SAÉ 1.03 Étude du fonctionnement d\'une organisation de production de biens ou services',
+      'SAÉ 2.04 Proposition d\'une offre de produit ou de service',
+    ]
+  }
+};
+
+function openModal(key) {
+  const d = data[key];
+  document.getElementById('modalTitle').textContent = d.title;
+  document.getElementById('modalSub').textContent = d.sub;
+  const list = document.getElementById('modalList');
+  list.innerHTML = d.items.map(i => `<li>${i}</li>`).join('');
+  document.getElementById('modalOverlay').classList.add('open');
+}
+function closeModalBtn() {
+  document.getElementById('modalOverlay').classList.remove('open');
+}
+function closeModal(e) {
+  if (e.target === document.getElementById('modalOverlay')) closeModalBtn();
+}
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeModalBtn(); });
+</script>
+
+</body>
+</html>
